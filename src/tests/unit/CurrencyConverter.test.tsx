@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import CurrencyConverter from '../components/CurrencyConverter';
+import CurrencyConverter from '../../components/CurrencyConverter';
 
 describe('CurrencyConverter', () => {
   const mockCurrencies = [

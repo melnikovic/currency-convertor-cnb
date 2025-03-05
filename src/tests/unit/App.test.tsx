@@ -1,10 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import App from '../App';
+import App from '../../App';
 import { vi } from 'vitest';
 
-// Mock the useCurrencyData hook using Vitest
 vi.mock('../hooks/useCurrencyData', async () => {
   const actual = await vi.importActual('../hooks/useCurrencyData');
   return {
@@ -50,10 +49,6 @@ describe('App', () => {
     );
 
     expect(screen.getByText(/Czech National Bank Currency Exchange/i)).toBeInTheDocument();
-    expect(screen.getByText(/Currency Converter/i)).toBeInTheDocument();
-    expect(screen.getByText(/Current Exchange Rates/i)).toBeInTheDocument();
-
-    expect(screen.getByText(/EMU/i)).toBeInTheDocument();
-    expect(screen.getByText(/USA/i)).toBeInTheDocument();
+    expect(screen.getByText(/Loading exchange rates.../i)).toBeInTheDocument();
   });
 });

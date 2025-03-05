@@ -59,7 +59,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyle />
-      <AppContent />
+      <main>
+        <AppContent />
+      </main>
     </QueryClientProvider>
   );
 }

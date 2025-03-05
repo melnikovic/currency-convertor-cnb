@@ -29,11 +29,18 @@ export const GlobalStyle = createGlobalStyle`
     align-items: center;
     padding: 2rem 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    box-sizing: border-box;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
   }
 `;
 
 export const Container = styled.div`
   max-width: 1024px;
+  width: 100%;
+  box-sizing: border-box;
   margin: 0 auto;
   padding: 2rem 1.5rem;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -41,9 +48,19 @@ export const Container = styled.div`
   background-color: ${colors.light};
   border-radius: 8px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
 
   @media (max-width: 768px) {
     padding: 1.5rem 1rem;
+    border-radius: 6px;
+    width: 95%;
+    max-width: 95%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.25rem 0.75rem;
+    width: 95%;
+    max-width: 95%;
   }
 `;
 
@@ -55,6 +72,9 @@ export const Title = styled.h1`
   color: ${colors.primary};
   position: relative;
   padding-bottom: 0.75rem;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 
   &:after {
     content: '';
@@ -69,7 +89,9 @@ export const Title = styled.h1`
   }
 
   @media (max-width: 768px) {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 `;
 
@@ -153,15 +175,22 @@ export const Form = styled.form`
   background-color: ${colors.secondary};
   padding: 1.5rem;
   border-radius: 8px;
-  max-width: 500px;
+  max-width: 100%;
+  width: 100%;
   margin: 0 auto 1.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 1.25rem 0.75rem;
+  }
 `;
 
 export const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: 100%;
 `;
 
 export const Label = styled.label`
@@ -177,11 +206,17 @@ export const Input = styled.input`
   border-radius: 6px;
   font-size: 1rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
 
   &:focus {
     outline: none;
     border-color: ${colors.primary};
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.9rem;
   }
 `;
 
@@ -193,11 +228,17 @@ export const Select = styled.select`
   font-size: 1rem;
   background-color: ${colors.light};
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
 
   &:focus {
     outline: none;
     border-color: ${colors.primary};
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.9rem;
   }
 `;
 
@@ -211,6 +252,9 @@ export const Button = styled.button`
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.1s ease;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 
   &:hover {
     background-color: ${colors.primaryDark};
@@ -225,6 +269,11 @@ export const Button = styled.button`
     cursor: not-allowed;
     transform: none;
   }
+
+  @media (max-width: 768px) {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
 `;
 
 export const Result = styled.div`
@@ -238,6 +287,8 @@ export const Result = styled.div`
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.3s ease-in-out;
+  width: 100%;
+  box-sizing: border-box;
 
   @keyframes fadeIn {
     from {
@@ -248,6 +299,11 @@ export const Result = styled.div`
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    padding: 0.875rem 1rem;
   }
 `;
 
@@ -277,7 +333,9 @@ export const LoadingContainer = styled.div`
   font-weight: 500;
 `;
 
-export const ErrorMessage = styled.div`
+export const ErrorMessage = styled.div.attrs({
+  role: 'alert',
+})`
   color: ${colors.danger};
   background-color: rgba(239, 68, 68, 0.1);
   padding: 0.875rem 1rem;
@@ -285,6 +343,13 @@ export const ErrorMessage = styled.div`
   border-left: 4px solid ${colors.danger};
   font-size: 0.9375rem;
   margin-top: 0.25rem;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.875rem;
+  }
 `;
 
 export const DateInfo = styled.p`
@@ -299,4 +364,11 @@ export const DateInfo = styled.p`
   display: inline-block;
   margin-left: auto;
   margin-right: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    font-size: 0.875rem;
+    padding: 0.375rem;
+  }
 `;

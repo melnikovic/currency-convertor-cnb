@@ -1,4 +1,4 @@
-import { parseCurrencyData } from '../utils/parseCurrencyData';
+import { parseCurrencyData } from '../../utils/parseCurrencyData';
 
 describe('parseCurrencyData', () => {
   test('should parse valid currency data correctly', () => {
